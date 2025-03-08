@@ -1,0 +1,42 @@
+<div *ngIf="cart$ | async as cart; else emptyCart">
+  <h2>Your Cart</h2>
+  <p><strong>Restaurant:</strong> {{ cart.restaurantId }}</p>
+
+  <div *ngFor="let item of cart.items" class="card mb-3 shadow-lg">
+    <div class="card-body">
+      <h5 class="card-title">{{ item.name }}</h5>
+      <p class="card-text">
+        <strong>Price:</strong> {{ item.price | currency }}
+      </p>
+      <button class="btn btn-outline-danger" (click)="removeFromCart(item)">
+        <i class="bi bi-trash"></i> Remove
+      </button>
+    </div>
+  </div>
+
+  <form (ngSubmit)="placeOrder()">
+    <div class="mb-3">
+      <label for="orderName" class="form-label"><strong>Order Name:</strong></label>
+      <input
+        type="text"
+        class="form-control"
+        id="orderName"
+        [(ngModel)]="orderName"
+        name="orderName"
+        placeholder="Enter a name for your order"
+        required
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!orderName || cart.items.length === 0"
+    >
+      <i class="bi bi-check-circle"></i> Place Order
+    </button>
+  </form>
+</div>
+
+<ng-template #emptyCart>
+  <p>Your cart is empty.</p>
+</ng-template>

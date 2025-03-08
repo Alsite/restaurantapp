@@ -1,0 +1,43 @@
+/* Custom Navbar Styling */
+.navbar {
+    background-color: #212121; /* Dark background color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  }
+  
+  .navbar-brand {
+    color: #ffffff; /* White text for brand */
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #b0b0b0; /* Light grey for nav items */
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ffffff; /* White text when hovered */
+    background-color: #343434; /* Darker background when hovered */
+    border-radius: 5px; /* Rounded corners on hover */
+  }
+  
+  .navbar-nav .nav-link.active {
+    color: #ff4081; /* Custom active link color (pinkish) */
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #ffffff; /* White hamburger icon */
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-nav {
+      text-align: center;
+    }
+  
+    .nav-link {
+      padding: 1rem 0; /* Padding adjustments for smaller screens */
+    }
+  }
+  

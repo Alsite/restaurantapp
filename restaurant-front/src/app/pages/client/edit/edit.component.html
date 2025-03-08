@@ -1,0 +1,50 @@
+<h2>Edit Command</h2>
+
+<!-- Loading Spinner -->
+<div *ngIf="isLoading" class="text-center">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="mt-2">Loading command details...</p>
+</div>
+<!-- Form -->
+<form *ngIf="!isLoading" (ngSubmit)="updateCommand()">
+<div class="form-group mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      [(ngModel)]="command.name"
+      name="name"
+      required
+      #name="ngModel"
+    />
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+      <div *ngIf="name.errors?.['required']">Name is required.</div>
+    </div>
+  </div>
+  
+  <div class="form-group mb-3">
+    <label for="tprice" class="form-label">Total Price</label>
+    <input
+      type="number"
+      class="form-control"
+      id="tprice"
+      [(ngModel)]="command.tprice"
+      name="tprice"
+      required
+      #tprice="ngModel"
+    />
+    <div *ngIf="tprice.invalid && (tprice.dirty || tprice.touched)" class="text-danger">
+      <div *ngIf="tprice.errors?.['required']">Total Price is required.</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="isUpdating">
+    <span *ngIf="!isUpdating">Update Command</span>
+    <span *ngIf="isUpdating">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Updating...
+    </span>
+  </button>
+</form>

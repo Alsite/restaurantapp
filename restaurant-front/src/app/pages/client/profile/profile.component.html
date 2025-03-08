@@ -1,0 +1,79 @@
+<div class="container mt-4">
+    <h2>User Profile</h2>
+    <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          [(ngModel)]="user.name"
+          required
+          minlength="3"
+        />
+        <div *ngIf="profileForm.controls['name']?.invalid && (profileForm.controls['name']?.dirty || profileForm.controls['name']?.touched)"
+             class="text-danger">
+          <div *ngIf="profileForm.controls['name']?.errors?.['required']">Name is required.</div>
+          <div *ngIf="profileForm.controls['name']?.errors?.['minlength']">Name must be at least 3 characters long.</div>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          [(ngModel)]="user.email"
+          required
+          email
+        />
+        <div *ngIf="profileForm.controls['email']?.invalid && (profileForm.controls['email']?.dirty || profileForm.controls['email']?.touched)"
+             class="text-danger">
+          <div *ngIf="profileForm.controls['email']?.errors?.['required']">Email is required.</div>
+          <div *ngIf="profileForm.controls['email']?.errors?.['email']">Invalid email format.</div>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          [(ngModel)]="user.password"
+          required
+          minlength="8"
+        />
+        <div *ngIf="profileForm.controls['password']?.invalid && (profileForm.controls['password']?.dirty || profileForm.controls['password']?.touched)"
+             class="text-danger">
+          <div *ngIf="profileForm.controls['password']?.errors?.['required']">Password is required.</div>
+          <div *ngIf="profileForm.controls['password']?.errors?.['minlength']">Password must be at least 8 characters long.</div>
+        </div>
+      </div>
+  
+      <!-- <div class="mb-3">
+        <label for="role" class="form-label">Role</label>
+        <select
+          class="form-control"
+          id="role"
+          name="role"
+          [(ngModel)]="user.role"
+          required
+        >
+          <option value="admin">Admin</option>
+          <option value="restaurant">Restaurant</option>
+          <option value="client">Client</option>
+        </select>
+        <div *ngIf="profileForm.controls['role']?.invalid && (profileForm.controls['role']?.dirty || profileForm.controls['role']?.touched)"
+             class="text-danger">
+          <div *ngIf="profileForm.controls['role']?.errors?.['required']">Role is required.</div>
+        </div>
+      </div>
+   -->
+      <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Save Changes</button>
+    </form>
+  </div>

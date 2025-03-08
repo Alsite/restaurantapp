@@ -1,0 +1,34 @@
+<div class="container mt-4">
+    <h2>Restaurants</h2>
+    <div class="d-flex justify-content-between mb-3" *ngIf="utilisateur.role === 'ROLE_restaurant' || utilisateur.role === 'ROLE_admin'">
+      <button class="btn btn-outline-primary" (click)="navigateToAddRestaurant()" aria-label="Add Restaurant">
+        <i class="bi bi-plus"></i> Add Restaurant
+      </button>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by Commune"
+          [(ngModel)]="communeFilter"
+          (input)="filterRestaurants()"
+        />
+      </div>
+      <div class="col-md-4">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by Moughataa"
+          [(ngModel)]="moughataaFilter"
+          (input)="filterRestaurants()"
+        />
+      </div>
+    </div>
+    <div class="d-flex flex-wrap gap-3">
+    <div *ngFor="let restaurant of filteredRestaurants">
+      <app-restaurant-card [restaurant]="restaurant" [utilisateur]="utilisateur" (delete)="onDeleteRestaurant($event)"></app-restaurant-card>
+    </div>
+    </div>
+  </div>

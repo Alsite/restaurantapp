@@ -1,0 +1,10 @@
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-footer .btn-group {
+    display: flex;
+    gap: 8px; /* Adjust spacing between buttons */
+  }

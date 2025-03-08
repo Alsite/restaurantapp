@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <h2>Add Restaurant</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Restaurant Name</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="restaurant.name" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="moughataa" class="form-label">Moughataa</label>
+        <input type="text" class="form-control" id="moughataa" [(ngModel)]="restaurant.moughataa" name="moughataa" required>
+      </div>
+      <div class="mb-3">
+        <label for="commune" class="form-label">Commune</label>
+        <input type="text" class="form-control" id="commune" [(ngModel)]="restaurant.commune" name="commune" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Click on the map to select the restaurant location</label>
+        <google-map
+          [center]="{ lat: 18.0728, lng: -15.9582 }"
+          [zoom]="12"
+          width="100%"
+          height="300px"
+          (mapClick)="onMapClick($event)"
+        >
+          <map-marker
+            *ngIf="restaurant.latitude && restaurant.longitude"
+            [position]="{ lat: restaurant.latitude, lng: restaurant.longitude }"
+          ></map-marker>
+        </google-map>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Restaurant</button>
+    </form>
+  </div>

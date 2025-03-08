@@ -1,0 +1,78 @@
+<div *ngIf="restaurant; else loading">
+  <h2>Menu for {{ restaurant.name }}</h2>
+
+  <!-- Add Meal Form -->
+  <div class="d-flex justify-content-between mb-3" *ngIf="utilisateur.role === 'ROLE_admin' || (utilisateur.role === 'ROLE_restaurant' && utilisateur.id === restaurant.utilisateur?.id)">
+    <div class="mb-3">
+      <h3>Add New Meal</h3>
+      <form (ngSubmit)="addRepa(newRepaForm.value)" #newRepaForm="ngForm">
+        <div class="form-group">
+          <label for="name">Meal Name</label>
+          <input type="text" class="form-control" id="name" name="name" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" class="form-control" id="price" name="price" ngModel required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Meal</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Meal Form -->
+  <div *ngIf="editingRepa" class="mb-3">
+    <h3>Edit Meal</h3>
+    <form (ngSubmit)="saveRepa()" #editRepaForm="ngForm">
+      <div class="form-group">
+        <label for="editName">Meal Name</label>
+        <input type="text" class="form-control" id="editName" name="name" [(ngModel)]="editingRepa.name" required>
+      </div>
+      <div class="form-group">
+        <label for="editPrice">Price</label>
+        <input type="number" class="form-control" id="editPrice" name="price" [(ngModel)]="editingRepa.price" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+      <button type="button" class="btn btn-secondary" (click)="editingRepa = null">Cancel</button>
+    </form>
+  </div>
+
+  <!-- Meal List -->
+  <div *ngIf="repas.length > 0; else noRepas" class="row">
+    <div *ngFor="let repa of repas" class="col-md-4 mb-3">
+      <div class="card mb-3 shadow-lg card-hover">
+        <div class="card-body">
+          <h5 class="card-title">{{ repa.name }}</h5>
+          <p class="card-text">
+            <strong>Price:</strong> {{ repa.price | currency }}
+          </p>
+        </div>
+        <button class="btn btn-outline-primary w-50 mx-auto mb-3" (click)="addToCart(repa)">
+          <i class="bi bi-cart-plus"></i> Add to Cart
+        </button>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+          <small class="text-muted">Served by {{ restaurant.name }}</small>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-warning"
+              *ngIf="utilisateur.role === 'ROLE_admin' || (utilisateur.role === 'ROLE_restaurant' && utilisateur.id === restaurant.utilisateur?.id)"
+              (click)="editRepa(repa)">
+              <i class="bi bi-pencil"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger"
+              *ngIf="utilisateur.role === 'ROLE_admin' || (utilisateur.role === 'ROLE_restaurant' && utilisateur.id === restaurant.utilisateur?.id)"
+              (click)="deleteRepa(repa.id)">
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noRepas>
+    <p>No meals available for this restaurant.</p>
+  </ng-template>
+</div>
+
+<ng-template #loading>
+  <p>Loading restaurant details...</p>
+</ng-template>

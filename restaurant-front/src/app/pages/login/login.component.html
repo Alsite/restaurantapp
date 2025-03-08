@@ -1,0 +1,47 @@
+<div class="container-fluid dark-theme">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-4 col-sm-8">
+        <div class="card shadow-lg">
+          <div class="card-body p-5">
+            <h2 class="card-title text-center mb-4">Welcome Back</h2>
+            <form (ngSubmit)="onSubmit()" novalidate>
+              <div class="mb-3 text-white">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  [(ngModel)]="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <div class="mb-4 text-white">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  [(ngModel)]="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-100" [disabled]="isLoading">
+                <span *ngIf="!isLoading">Login</span>
+                <span *ngIf="isLoading">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Logging in...
+                </span>
+              </button>
+            </form>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+              {{ errorMessage }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

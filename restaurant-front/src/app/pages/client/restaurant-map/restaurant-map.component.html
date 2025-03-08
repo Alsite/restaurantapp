@@ -1,0 +1,11 @@
+<google-map [center]="{ lat: 18.0728, lng: -15.9582 }" [zoom]="12" width="100%" height="600px">
+    <ng-container *ngFor="let restaurant of restaurants">
+        <map-marker 
+        [title]="restaurant.name"
+        [position]="{
+            lat: restaurant.latitude,
+            lng: restaurant.longitude }"
+        [label]="restaurant.name">
+        </map-marker>
+    </ng-container>    
+</google-map>

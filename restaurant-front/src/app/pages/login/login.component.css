@@ -1,0 +1,44 @@
+/* Dark Theme Styles */
+.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+    min-height: 100vh;
+  }
+  
+  .dark-theme .card {
+    background-color: #1e1e1e;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .dark-theme .card-title {
+    color: #ffffff;
+  }
+  
+  .dark-theme .form-control {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border: 1px solid #444;
+  }
+  
+  .dark-theme .form-control:focus {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border-color: #666;
+    box-shadow: none;
+  }
+  
+  .dark-theme .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .dark-theme .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .dark-theme .alert-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+  }
