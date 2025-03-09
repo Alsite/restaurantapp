@@ -7,4 +7,4 @@ services:
   frontend:
     image: aldocker10/your-angular-app:latest
     ports:
-      - "4200:4200"
+      - "4200:80"

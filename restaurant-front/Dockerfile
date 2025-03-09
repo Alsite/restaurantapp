@@ -14,17 +14,16 @@ RUN npm install
 COPY . .
 
 # Build the Angular app
-RUN npm run build -- --prod
+RUN npm run build -- --configuration production
 
 # Use an Nginx image to serve the Angular app
 FROM nginx:alpine
 
 # Copy the built Angular app to Nginx
-COPY --from=build /app/dist/your-angular-app /usr/share/nginx/html
+COPY --from=build /app/dist/restaurant-front /usr/share/nginx/html
 
 # Expose port 80
-# Expose port 4200
-EXPOSE 4200
+EXPOSE 80
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
