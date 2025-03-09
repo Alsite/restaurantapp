@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build Backend') {
             steps {
-                dir('backend') {
+                dir('restaurant') {
                     sh 'mvn clean package -DskipTests'
                 }
             }
@@ -23,7 +23,7 @@ pipeline {
 
         stage('Build Frontend') {
             steps {
-                dir('frontend') {
+                dir('restaurant-front') {
                     sh 'npm install'
                     sh 'npm run build -- --prod'
                 }
