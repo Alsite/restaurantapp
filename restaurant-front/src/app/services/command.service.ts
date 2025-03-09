@@ -25,7 +25,9 @@ export class CommandService {
   getCommandById(id: number): Observable<Command> {
     return this.http.get<Command>(`${this.apiUrl}/${id}`);
   }
-
+getCommand(id: number): Observable<Command> {
+    return this.http.get<Command>(`${this.apiUrl}/${id}`);
+  }
   // Add a new command
   addCommand(command: Command): Observable<Command> {
     const token = this.authService.getToken(); // Assuming you have a method to get the token
