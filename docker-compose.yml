@@ -1,0 +1,10 @@
+version: '3'
+services:
+  backend:
+    image: aldocker10/your-spring-app:latest
+    ports:
+      - "8080:8080"
+  frontend:
+    image: aldocker10/your-angular-app:latest
+    ports:
+      - "4200:4200"
