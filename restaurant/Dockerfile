@@ -1,14 +1,11 @@
-# Use an official OpenJDK runtime as the base image
-FROM openjdk:17-jdk-alpine
-
-# Set the working directory
+FROM maven AS builder
 WORKDIR /app
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src/ src/
+RUN mvn clean package -B -DskipTests -X
 
-# Copy the built JAR file into the container
-COPY target/restaurant-0.0.1-SNAPSHOT.jar app.jar
+FROM openjdk:17
+COPY --from=builder /app/target/*.jar restaurant.jar
 
-# Expose the port the app runs on
-EXPOSE 8080
-
-# Command to run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/restaurant.jar"]
